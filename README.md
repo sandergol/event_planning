@@ -4,10 +4,27 @@ To start your Phoenix server:
 
 1. Get PostgreSQL:
 
-```bash
-$ docker run --name event_planning -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d postgres
-```
+    ```bash
+    $ docker run --name event_planning -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d postgres
+    ```
 
+2. Get deps:
+
+    ```bash
+    $ mix deps.get && mix deps.compile
+    ```
+
+3. DB create:
+
+    ```bash
+    $ mix ecto.create
+    ```
+
+4. Run:
+
+    ```bash
+    $ mix phx.server
+    ```
 
 ...
 - Install dependencies with `mix deps.get`
