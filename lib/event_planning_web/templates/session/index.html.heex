@@ -1,0 +1,7 @@
+<section class="phx-hero">
+  <h2>Log in to Messenger</h2>
+  <%= form_for @conn, Routes.session_path(@conn, :login), fn f -> %>
+    <%= text_input f, :password, placeholder: "Password", type: "password" %>
+    <%= submit "Log in", class: "login" %>
+  <% end %>
+</section>
