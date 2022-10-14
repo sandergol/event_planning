@@ -1,6 +1,5 @@
 defmodule EventPlanningWeb.Router do
   use EventPlanningWeb, :router
-  # import Plug.BasicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -25,6 +24,10 @@ defmodule EventPlanningWeb.Router do
     get "/", PageController, :index
     get "/login", SessionController, :index
     post "/login", SessionController, :login
+    get "/events/next", EventController, :next
+
+    # mix phx.gen.html Schedules Event events date_start:utc_datetime date_end:utc_datetime iteration:string active:integer
+    resources "/events", EventController
   end
 
   scope "/", EventPlanningWeb do

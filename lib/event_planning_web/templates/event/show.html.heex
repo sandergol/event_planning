@@ -1,0 +1,44 @@
+<%= if Utils.next_event?(assigns) do %>
+  <h1>Next Event</h1>
+<% else %>
+  <h1>Show Event</h1>
+<% end %>
+
+<%= if !is_nil(@event) do %>
+  <ul>
+    <li>
+      <strong>Date start:</strong>
+      <%= @event.date_start %>
+    </li>
+
+    <li>
+      <strong>Date end:</strong>
+      <%= @event.date_end %>
+    </li>
+
+    <li>
+      <%= if Utils.next_event?(assigns) do %>
+        <strong>Left:</strong>
+        <%= how_wait(@event) %>
+      <% else %>
+        <strong>Event will happen:</strong>
+        <%= # Utils.will_happen(@event) %>
+      <% end %>
+    </li>
+
+    <li>
+      <strong>Iteration:</strong>
+      <%= @event.iteration || "Not repeat" %>
+    </li>
+
+    <li>
+      <strong>Active:</strong>
+      <%= @event.active %>
+    </li>
+  </ul>
+
+  <span><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span> |
+<% else %>
+  <p>Not events</p>
+<% end %>
+<span><%= link "Back", to: Routes.event_path(@conn, :index) %></span>

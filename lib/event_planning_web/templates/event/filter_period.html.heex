@@ -1,0 +1,4 @@
+<%= form_for @conn, Routes.event_path(@conn, :index), [method: :get], fn f -> %>
+  Period: <%= select f, :view, [All: "all", Year: "year", Month: "month", Week: "week"], selected: @view || "week" %>
+  <%= submit "View", class: "view" %>
+<% end %>
