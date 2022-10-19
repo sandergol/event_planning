@@ -1,5 +1,6 @@
 defmodule EventPlanningWeb.Router do
   use EventPlanningWeb, :router
+  # import Plug.BasicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,10 +15,22 @@ defmodule EventPlanningWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug EventPlanningWeb.SessionController, :login
+  end
+
   scope "/", EventPlanningWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/login", SessionController, :index
+    post "/login", SessionController, :login
+  end
+
+  scope "/", EventPlanningWeb do
+    pipe_through [:browser, :auth]
+
+    get "/welcome", WelcomeController, :index
   end
 
   # Other scopes may use custom stacks.
