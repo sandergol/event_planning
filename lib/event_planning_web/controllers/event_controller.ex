@@ -1,5 +1,6 @@
 defmodule EventPlanningWeb.EventController do
   use EventPlanningWeb, :controller
+  # import Phoenix.Component
 
   alias EventPlanning.Schedules
   alias EventPlanning.Schedules.Event
