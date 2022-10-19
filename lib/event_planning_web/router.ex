@@ -14,10 +14,26 @@ defmodule EventPlanningWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug EventPlanningWeb.SessionController, :login
+  end
+
   scope "/", EventPlanningWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/login", SessionController, :index
+    post "/login", SessionController, :login
+    get "/events/next", EventController, :next
+
+    # mix phx.gen.html Schedules Event events date_start:utc_datetime date_end:utc_datetime iteration:string active:integer
+    resources "/events", EventController
+  end
+
+  scope "/", EventPlanningWeb do
+    pipe_through [:browser, :auth]
+
+    get "/welcome", WelcomeController, :index
   end
 
   # Other scopes may use custom stacks.

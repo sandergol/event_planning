@@ -18,6 +18,10 @@
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
               <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
             <% end %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/welcome">Welcome</a></li>
+            <li><%= link "my_schedule", to: Routes.event_path(@conn, :index) %></li>
+            <li><%= link "next_event", to: Routes.event_path(@conn, :next) %></li>
           </ul>
         </nav>
         <a href="https://phoenixframework.org/" class="phx-logo">
